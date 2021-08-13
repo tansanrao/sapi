@@ -1,5 +1,4 @@
 import dotenv from "dotenv";
-import fs from "fs";
 
 interface ServerConfig {
   port: number;
@@ -10,9 +9,7 @@ interface ServerConfig {
   sql_port: number;
 }
 
-if (fs.existsSync("../../.env")) {
-  dotenv.config({ path: "../../.env" });
-}
+dotenv.config();
 
 const config: ServerConfig = {
   port: normalizePort(process.env.port || 3000),
