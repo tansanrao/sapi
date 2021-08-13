@@ -7,7 +7,7 @@ export interface IMessage {
   from: string;
   body: string;
   to: string;
-  numSegments: number;
+  numSegments?: number;
   direction: string;
   statusCode?: number;
   statusMessage?: string;

@@ -8,7 +8,7 @@ export interface IUser {
   firstName: string;
   lastName: string;
   phone?: string;
-  status: number;
+  status: string;
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -62,7 +62,7 @@ export class User extends Model<IUser, IUserCreation> {
           allowNull: true,
         },
         status: {
-          type: DataTypes.INTEGER,
+          type: DataTypes.STRING,
           allowNull: false,
         },
         createdAt: {
