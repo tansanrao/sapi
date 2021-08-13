@@ -1,0 +1,7 @@
+{
+  "name": "sapi-gateway",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
