@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "sapi-gateway",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

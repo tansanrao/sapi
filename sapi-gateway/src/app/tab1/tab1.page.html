@@ -1,0 +1,52 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Overview
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Overview</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Config</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <ion-input type="text" [(ngModel)]="socket.serverUrl" placeholder="Server URL"></ion-input>
+            <ion-button (click)="socket.connectWS()" *ngIf="!socket.isSocketConnected()">Connect</ion-button>
+            <ion-button (click)="socket.disconnectWS()" *ngIf="socket.isSocketConnected()">Disconnect</ion-button>
+            <ion-button (click)="sms.startSMSWatch()" *ngIf="!sms.isWatcherRunning()">Start SMS Watcher</ion-button>
+            <ion-button (click)="sms.stopSMSWatch()" *ngIf="sms.isWatcherRunning()">Stop SMS Watcher</ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Statistics</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            Socket ID: {{socket.getSocketId()}}
+            <br>
+            Send Count: {{socket.sendHistory.length}}
+            <br>
+            Receive Count: {{socket.recvHistory.length}}
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
