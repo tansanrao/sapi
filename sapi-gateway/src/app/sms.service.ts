@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Platform } from '@ionic/angular';
+import { ConfigService, IConfig } from './config.service';
 
 declare var sms: any;
 declare var SMSReceive: any;
@@ -8,9 +9,10 @@ declare var SMSReceive: any;
   providedIn: 'root',
 })
 export class SmsService {
+  private config: IConfig;
   watcherRunning = false;
 
-  constructor(public platform: Platform) {
+  constructor(public platform: Platform, private configService: ConfigService) {
     if (this.platform.is('android') && this.platform.is('capacitor')) {
       this.requestPermission();
     }
@@ -105,7 +107,7 @@ export class SmsService {
     }
   }
 
-  setEventListener(socket, recvHistory) {
+  async setEventListener(config, socket, recvHistory) {
     /* Initialize incoming SMS event listener */
     console.log('smsreceive: set event listener on socket ID ' + socket.id);
     document.addEventListener('onSMSArrive', function (e: any) {
@@ -118,12 +120,12 @@ export class SmsService {
       recvHistory.push({
         from: IncomingSMS.address,
         body: IncomingSMS.body,
-        to: '',
+        to: config.phoneNumber,
       });
       socket.emit('receivedSMS', {
         from: IncomingSMS.address,
         body: IncomingSMS.body,
-        to: '',
+        to: config.phoneNumber,
       });
     });
   }

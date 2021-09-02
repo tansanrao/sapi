@@ -22,7 +22,13 @@
           </ion-card-header>
 
           <ion-card-content>
-            <ion-input type="text" [(ngModel)]="socket.serverUrl" placeholder="Server URL"></ion-input>
+            <ion-input type="text" [(ngModel)]="config.url" placeholder="Server URL"></ion-input>
+            <ion-input type="number" [(ngModel)]="config.id" placeholder="Gateway ID"></ion-input>
+            <ion-input type="number" [(ngModel)]="config.userId" placeholder="User ID"></ion-input>
+            <ion-input type="text" [(ngModel)]="config.phoneNumber" placeholder="Phone Number"></ion-input>
+            <ion-input type="text" [(ngModel)]="config.url" placeholder="Server URL"></ion-input>
+            <ion-button (click)="saveConfig()" color="success">Save Config</ion-button>
+            <ion-button (click)="loadConfig()" color="danger">Load Config</ion-button>
             <ion-button (click)="socket.connectWS()" *ngIf="!socket.isSocketConnected()">Connect</ion-button>
             <ion-button (click)="socket.disconnectWS()" *ngIf="socket.isSocketConnected()">Disconnect</ion-button>
             <ion-button (click)="sms.startSMSWatch()" *ngIf="!sms.isWatcherRunning()">Start SMS Watcher</ion-button>

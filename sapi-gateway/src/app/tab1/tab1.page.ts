@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ConfigService, IConfig } from '../config.service';
 import { SmsService } from '../sms.service';
 import { SocketService } from '../socket.service';
 
@@ -8,5 +9,25 @@ import { SocketService } from '../socket.service';
   styleUrls: ['tab1.page.scss'],
 })
 export class Tab1Page {
-  constructor(public socket: SocketService, public sms: SmsService) {}
+  private config: IConfig = {
+    id: null,
+    phoneNumber: '',
+    userId: null,
+    url: '',
+    status: '',
+  };
+
+  constructor(
+    public socket: SocketService,
+    public sms: SmsService,
+    public configService: ConfigService
+  ) {}
+
+  async loadConfig() {
+    this.config = await this.configService.getConfig();
+  }
+
+  async saveConfig() {
+    await this.configService.setConfig(this.config);
+  }
 }
