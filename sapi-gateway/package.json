@@ -30,7 +30,7 @@
     "cordova-plugin-sms-receive": "^1.0.2",
     "cordova-sms-plugin": "^1.0.1",
     "rxjs": "~6.6.0",
-    "socket.io-client": "^4.1.3",
+    "socket.io-client": "4.1.3",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"
   },
